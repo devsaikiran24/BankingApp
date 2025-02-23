@@ -3,20 +3,20 @@ kind: Deployment
 metadata:
   name: bankingapp-deploy
   labels:
-    app: bankingapp-app
+    app: bankingapp-app  # Ensure this label is the same as in the Service
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: bankingapp-app
+      app: bankingapp-app  # This selector should match the label in your Service
   template:
     metadata:
       labels:
-        app: bankingapp-app
+        app: bankingapp-app  # Ensure this label is the same as in the Service
     spec:
       containers:
       - name: bankingapp-container
-        image: devsaikiran24/bankingapp-app
+        image: devsaikiran24/bankingapp:latest  # Correct image name here
         ports:
         - containerPort: 8082
 ---
@@ -25,13 +25,16 @@ kind: Service
 metadata:
   name: bankingapp-np-service
   labels:
-    app: bankingapp-app
+    app: bankingapp-app  # Ensure this label matches the one in your Deployment
 spec:
   selector:
-    app: bankingapp-app
+    app: bankingapp-app  # Selector should match the app label from your Deployment
 
   type: NodePort
   ports:
   - nodePort: 31030  
     port: 8082
     targetPort: 8082
+
+    targetPort: 8082
+
