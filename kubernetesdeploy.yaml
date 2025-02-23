@@ -28,7 +28,7 @@ metadata:
     app: bankingapp-app  # Ensure this label matches the one in your Deployment
 spec:
   selector:
-    app: bankingapp-app  # Selector should match the app label from your Deployment
+    app: bankingapp-app  # Selector should match the app label from your 
 
   type: NodePort
   ports:
